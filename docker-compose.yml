@@ -1,0 +1,51 @@
+services:
+  mongo:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  gateway:
+    build: ./gateway
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      USER_SERVICE_URL: http://user-service:4001
+      AVAILABILITY_SERVICE_URL: http://availability-service:4002
+      APPOINTMENT_SERVICE_URL: http://appointment-service:4003
+    depends_on:
+      - user-service
+      - availability-service
+      - appointment-service
+
+  user-service:
+    build: ./services/user-service
+    environment:
+      PORT: 4001
+      MONGO_URI: mongodb://mongo:27017/mini-projet
+      JWT_SECRET: dev-secret
+    depends_on:
+      - mongo
+
+  availability-service:
+    build: ./services/availability-service
+    environment:
+      PORT: 4002
+      MONGO_URI: mongodb://mongo:27017/mini-projet
+    depends_on:
+      - mongo
+
+  appointment-service:
+    build: ./services/appointment-service
+    environment:
+      PORT: 4003
+      MONGO_URI: mongodb://mongo:27017/mini-projet
+      AVAILABILITY_SERVICE_URL: http://availability-service:4002
+    depends_on:
+      - mongo
+      - availability-service
+
+volumes:
+  mongo-data:

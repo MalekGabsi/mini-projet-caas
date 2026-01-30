@@ -2,14 +2,13 @@ import "dotenv/config";
 import express from "express";
 import mongoose from "mongoose";
 import morgan from "morgan";
+import { connectDatabase } from "./config/db.js";
 
 const app = express();
 const PORT = process.env.PORT || 4002;
 const MONGO_URI = process.env.MONGO_URI || "mongodb://mongo:27017/mini-projet";
 
-mongoose.connect(MONGO_URI).then(() => {
-  console.log("Availability service connected to MongoDB");
-});
+connectDatabase(MONGO_URI);
 
 const slotSchema = new mongoose.Schema(
   {

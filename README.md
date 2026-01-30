@@ -27,6 +27,17 @@ Les services démarrent sur :
 - Availability Service : http://localhost:4002
 - Appointment Service : http://localhost:4003
 
+## Lancer le frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Par défaut, le frontend parle à la gateway sur `http://localhost:3000`.
+Tu peux changer l’URL dans `frontend/.env` à partir de `frontend/.env.example`.
+
 ## Modèle de données
 
 - **users**: `{ _id, name, email, passwordHash, role }`

@@ -4,15 +4,14 @@ import mongoose from "mongoose";
 import morgan from "morgan";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { connectDatabase } from "./config/db.js";
 
 const app = express();
 const PORT = process.env.PORT || 4001;
 const MONGO_URI = process.env.MONGO_URI || "mongodb://mongo:27017/mini-projet";
 const JWT_SECRET = process.env.JWT_SECRET || "dev-secret";
 
-mongoose.connect(MONGO_URI).then(() => {
-  console.log("User service connected to MongoDB");
-});
+connectDatabase(MONGO_URI);
 
 const userSchema = new mongoose.Schema(
   {

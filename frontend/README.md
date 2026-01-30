@@ -1,10 +1,18 @@
-# Frontend (à créer)
+# Frontend (React + Vite)
 
-Projet React (Vite) recommandé pour les pages MVP :
+## Démarrage rapide
 
-- Login / Register
-- Liste des pros
-- Calendrier / slots
-- Mes rendez-vous
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-Ce dossier est prêt à recevoir l'application.
+Par défaut, le front appelle la gateway sur `http://localhost:3000`.
+Pour changer :
+
+```bash
+cp .env.example .env
+```
+
+Puis modifie `VITE_API_URL`.

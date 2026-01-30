@@ -28,6 +28,35 @@ body {
   margin-bottom: 32px;
 }
 
+.nav {
+  position: sticky;
+  top: 16px;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 12px;
+  margin-bottom: 24px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(8px);
+}
+
+.nav a {
+  text-decoration: none;
+  color: #1d4ed8;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #e0e7ff;
+}
+
+.single-page {
+  display: grid;
+  gap: 22px;
+}
+
 .hero h1 {
   font-size: clamp(32px, 4vw, 44px);
   margin: 8px 0 12px;
@@ -241,7 +270,8 @@ button:disabled {
 
 @media (max-width: 900px) {
   .hero,
-  .layout {
+  .layout,
+  .nav {
     grid-template-columns: 1fr;
   }
 }

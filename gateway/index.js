@@ -2,11 +2,17 @@ import "dotenv/config";
 import express from "express";
 import morgan from "morgan";
 import { createProxyMiddleware } from "http-proxy-middleware";
+import cors from "cors";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(morgan("dev"));
+app.use(
+  cors({
+    origin: process.env.CORS_ORIGIN || "http://localhost:5173"
+  })
+);
 
 const userServiceUrl = process.env.USER_SERVICE_URL || "http://user-service:4001";
 const availabilityServiceUrl =
